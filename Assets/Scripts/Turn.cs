@@ -25,13 +25,20 @@ public class Turn : MonoBehaviour
             }
 
             isTurn = false;
-            currentTurnDuration = turnDuration;
+            EndTurn();
+            
         }
     
     }
 
+    public void EndTurn() 
+    {
+        OnTurnEnded?.Invoke();
+    }
+
     public void StartTurn()
     {
+        currentTurnDuration = turnDuration;
         Debug.Log("Turn Started");
         isTurn = true;
         return;
