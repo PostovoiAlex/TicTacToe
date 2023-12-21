@@ -1,30 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MenuButtons : MonoBehaviour
 {
+    [SerializeField] private SceneAsset gameScene;
+    [SerializeField] private SceneAsset menuScene;
+    [SerializeField] private Button startGameButton;
+    [SerializeField] private Button exitGameButton;
+    [SerializeField] private Button mainMenuButton;
 
     private void Start()
     {
-        Button StartGame_btn = transform.Find("StartGame_btn").GetComponent<Button>();
-        Button ExitGame_btn = transform.Find("ExitGame_btn").GetComponent<Button>();
-
-
-        StartGame_btn.onClick.AddListener(StartGame);
-        ExitGame_btn.onClick.AddListener(ExitGame);
-
+        startGameButton.onClick.AddListener(StartGame);
+        exitGameButton.onClick.AddListener(ExitGame);
+        mainMenuButton.onClick.AddListener(OpenMenu);
     }
+
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(gameScene.name);
     }
 
-    public void ExitGame() 
+    public void ExitGame()
     {
         Application.Quit();
         Debug.Log("Game EXIT");
+    }
+
+    public void OpenMenu() 
+    {
+        SceneManager.LoadScene(menuScene.name);
     }
 }
