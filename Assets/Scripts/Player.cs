@@ -1,9 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+namespace TicTacToe
 {
-    [SerializeField] Turn turn;
+    public class Player : MonoBehaviour
+    {
+        [SerializeField] Sprite _playerTileSprite;
 
+        public Sprite PlayerTileSprite => _playerTileSprite;
+        public Action OnPlayerTurnStarted;
+        public Action OnPlayerTurnEnded;
+
+        public void StartTurn()
+        {
+            OnPlayerTurnStarted?.Invoke();
+        }
+
+        public void EndTurn()
+        {
+            OnPlayerTurnEnded?.Invoke();
+        }
+    }
 }
