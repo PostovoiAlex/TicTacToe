@@ -461,6 +461,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 378315836}
   m_CullTransparentMesh: 1
+--- !u!1 &424119554 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7158564266042715680, guid: 4ff3827b657feac4788524d96a999782, type: 3}
+  m_PrefabInstance: {fileID: 7158564265622465707}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &620228667
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,6 +694,20 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7158564266042715687, guid: 4ff3827b657feac4788524d96a999782, type: 3}
   m_PrefabInstance: {fileID: 7158564265622465707}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &696025741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424119554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfdfbaf09e5584241a63cf6b1711d7ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 620228669}
+  sceneAsset: {fileID: 102900000, guid: 9fc0d4010bbf28b4594072e72b8655ab, type: 3}
 --- !u!1 &851686915
 GameObject:
   m_ObjectHideFlags: 0
@@ -999,6 +1018,10 @@ PrefabInstance:
     - target: {fileID: 7158564266042715680, guid: 4ff3827b657feac4788524d96a999782, type: 3}
       propertyPath: m_Name
       value: Menubuttons
+      objectReference: {fileID: 0}
+    - target: {fileID: 7158564266042715686, guid: 4ff3827b657feac4788524d96a999782, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7158564266042715686, guid: 4ff3827b657feac4788524d96a999782, type: 3}
       propertyPath: exitGameButton

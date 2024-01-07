@@ -15,9 +15,19 @@ public class MenuButtons : MonoBehaviour
 
     private void Start()
     {
-        startGameButton.onClick.AddListener(StartGame);
-        exitGameButton.onClick.AddListener(ExitGame);
-        mainMenuButton.onClick.AddListener(OpenMenu);
+        if(startGameButton != null)
+        {
+            startGameButton.onClick.AddListener(StartGame);
+        }
+        if (exitGameButton != null)
+        {
+            exitGameButton.onClick.AddListener(ExitGame);
+        }
+        if(mainMenuButton != null)
+        {
+            mainMenuButton.onClick.AddListener(OpenMenu);
+        }
+        
     }
 
     public void StartGame()

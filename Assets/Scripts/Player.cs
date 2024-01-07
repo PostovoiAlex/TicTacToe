@@ -6,6 +6,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] Turn turn;
+    [SerializeField] string playerName;
+    public string PlayerName { get { return playerName; } }
+    public string GetPlayerName() 
+    { 
+        return playerName;
+    }
 
 
     public void Awake()

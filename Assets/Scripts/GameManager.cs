@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] Player[] player;
+    [SerializeField] Ui_DisplayPlayerName uiName;
 
     public void Awake()
     {
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     { 
         int rand = Random.Range(0, player.Length);
         player[rand].StartTurn();
+        uiName.DisplayName(player[rand].PlayerName);
     }
 
     public void Start()
