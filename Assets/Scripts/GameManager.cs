@@ -19,6 +19,7 @@ namespace TicTacToe
             _turn.OnTurnStarted += OnTurnStarted;
             _turn.OnTurnEnded += OnTurnEnded;
         }
+
         void OnTileSelected()
         {
             _field.SetTileSprite(_field.LastSelectedTile, _currentPlayer.PlayerTileSprite);
@@ -32,6 +33,12 @@ namespace TicTacToe
         void OnTurnEnded()
         {
             //TODO: Check win condition
+
+            if(_field.CheckTileWinCombination(_field.LastSelectedTile))
+            {
+                return;
+            }
+
             StartTurn();
         }
         

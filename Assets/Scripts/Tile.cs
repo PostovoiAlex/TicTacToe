@@ -10,8 +10,15 @@ namespace TicTacToe
         [SerializeField] Button _button;
         [SerializeField] TMP_Text _text;
         [SerializeField] Image _image;
+        public Image Image => _image;
         [SerializeField] TileState _state;
-        
+
+        [SerializeField] int _xPos;
+        [SerializeField] int _yPos;
+
+        public int X_Pos => _xPos;
+        public int Y_Pos => _yPos;
+
         public TileState State => _state;
 
         public Action<Tile> OnTileClicked;
