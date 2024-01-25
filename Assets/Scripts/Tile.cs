@@ -1,46 +1,45 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Tile : MonoBehaviour
+namespace TicTacToe
 {
-    [SerializeField] Button _button;
-    [SerializeField] TMPro.TMP_Text _text;
-    [SerializeField] State _state;
-
-    public void Awake()
+    public class Tile : MonoBehaviour
     {
-        _button.onClick.AddListener(OnClicked);
+        [SerializeField] Button _button;
+        [SerializeField] TMP_Text _text;
+        [SerializeField] Image _image;
+        public Image Image => _image;
+        [SerializeField] TileState _state;
 
-    }
+        [SerializeField] int _xPos;
+        [SerializeField] int _yPos;
 
-    private void OnClicked()
-    {
-        SetState(State.Full);
-    }
+        public int X_Pos => _xPos;
+        public int Y_Pos => _yPos;
 
-    public void SetState(State state)
-    {
-        _state = state;
+        public TileState State => _state;
 
-        if (_state == State.Empty)
+        public Action<Tile> OnTileClicked;
+        public void Init()
         {
-            _text.text = "";
+            _button.onClick.AddListener(OnClicked);
         }
-        else
+
+        public void SetSprite(Sprite sprite)
         {
-            _text.text = "X";
+            _image.sprite = sprite;
         }
-    }
+        
+        public void SetState(TileState state)
+        {
+            _state = state;
+        }
 
-    public State GetState()
-    {
-        return _state;
-    }
-
-    public enum State 
-    { 
-        Empty, Full
+        private void OnClicked()
+        {
+            OnTileClicked?.Invoke(this);
+        }
     }
 }

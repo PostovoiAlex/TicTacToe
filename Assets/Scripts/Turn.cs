@@ -1,40 +1,57 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Collections;
 
-
-public class Turn : MonoBehaviour
+namespace TicTacToe
 {
-
-    [SerializeField] float turnDuration;
-    [SerializeField] float currentTurnDuration;
-
-    private bool isTurn;
-
-    public event Action OnTurnEnded;
-
-    public void Update()
+    public class Turn : MonoBehaviour
     {
-        if (isTurn) 
+        Field _field;
+        IEnumerator _currentTurn;
+
+        bool _isWaiting;
+        
+        public Action OnTurnStarted;
+        public Action OnTurnEnded;
+
+        public void Init(Field field)
         {
-            if (currentTurnDuration > 0)
-            {
-                currentTurnDuration = currentTurnDuration - Time.deltaTime;
-                return;
-            }
-
-            isTurn = false;
-            currentTurnDuration = turnDuration;
+            _field = field;
+            _field.OnTileSelected += OnTileSelected;
         }
-    
-    }
+        
+        void OnTileSelected()
+        {
+            _isWaiting = false;
+        }
 
-    public void StartTurn()
-    {
-        Debug.Log("Turn Started");
-        isTurn = true;
-        return;
+        public void StartTurn()
+        {
+            Debug.Log("Turn Started");
+            
+            _currentTurn = TurnCoroutine();
+            StartCoroutine(_currentTurn);
+            
+            OnTurnStarted?.Invoke();
+        }
+        
+        public void EndTurn()
+        {
+            StopCoroutine(_currentTurn);
+            _currentTurn = null;
+            
+            OnTurnEnded?.Invoke();
+            
+            Debug.Log("Turn Ended");
+        }
 
+        private IEnumerator TurnCoroutine()
+        {
+            _isWaiting = true;
+
+            yield return new WaitWhile(() => _isWaiting);
+            
+            EndTurn();
+        }
     }
 }
