@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace TicTacToe
@@ -8,21 +9,23 @@ namespace TicTacToe
         Player _currentPlayer;
         [SerializeField] Field _field;
         [SerializeField] Turn _turn;
+        [SerializeField] WinCondition _winCondition;
+
+        public Action OnGameEnded { get; set; }
 
         void Awake()
         {
             _field.Init();
-            _field.OnTileSelected += OnTileSelected;
+
+            foreach (var player in players)
+            {
+                player.Init(_field);
+            }
             
             _turn.Init(_field);
-            
+         
             _turn.OnTurnStarted += OnTurnStarted;
             _turn.OnTurnEnded += OnTurnEnded;
-        }
-
-        void OnTileSelected()
-        {
-            _field.SetTileSprite(_field.LastSelectedTile, _currentPlayer.PlayerTileSprite);
         }
 
         public void Start()
@@ -32,10 +35,12 @@ namespace TicTacToe
 
         void OnTurnEnded()
         {
-            //TODO: Check win condition
+            _currentPlayer.EndTurn();
 
-            if(_field.CheckTileWinCombination(_field.LastSelectedTile))
+            if(_winCondition.CheckCondition(_field.LastSelectedTile))
             {
+                Debug.Log("Game Ended");
+                OnGameEnded?.Invoke();
                 return;
             }
 

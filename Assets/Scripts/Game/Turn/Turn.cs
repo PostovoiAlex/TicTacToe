@@ -20,7 +20,7 @@ namespace TicTacToe
             _field.OnTileSelected += OnTileSelected;
         }
         
-        void OnTileSelected()
+        void OnTileSelected(Tile tile)
         {
             _isWaiting = false;
         }
